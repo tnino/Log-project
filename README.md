@@ -27,8 +27,11 @@ Name of the file: logs.py in order to run the queries  
 QUERY 1  
 SELECT articles.title, COUNT(*) as views FROM articles JOIN log on articles.slug = substring(log.path,10) WHERE path != '/'GROUP by substring(log.path, 10),articles.title ORDER BY views desc LIMIT 3; 
 
+
 QUERY 2
 SELECT authors.name, count(log.path) as views FROM authors left join articles on authors.id = articles.author left JOIN log on log.path like concat('%', articles.slug) GROUP BY authors.name ORDER BY views desc;  
+
+
 QUERY 3 
 Create view 
 a1 as SELECT to_date(time,'FMMonth FMDD, YYYY'), COUNT(status) as total FROM log WHERE status = '404 NOT FOUND' GROUP BY to_date(time,'FMMonth FMDD, YYYY; 
