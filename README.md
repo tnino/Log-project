@@ -34,9 +34,9 @@ SELECT authors.name, count(log.path) as views FROM authors left join articles on
 
 QUERY 3 
 Create view 
-a1 as SELECT to_date(time,'FMMonth FMDD, YYYY'), COUNT(status) as total FROM log WHERE status = '404 NOT FOUND' GROUP BY to_date(time,'FMMonth FMDD, YYYY; 
+a1 as SELECT to_date(time,'FMMonth FMDD, YYYY') as date, COUNT(status) as total FROM log WHERE status = '404 NOT FOUND' GROUP BY date;
 Create view 
-r2 as SELECT to_date(time,'FMMonth FMDD, YYYY'), COUNT(status) as total FROM log GROUP BY to_date (time,'FMMonth FMDD, YYYY; 
+r2 as SELECT to_date(time,'FMMonth FMDD, YYYY') as date, COUNT(status) as total FROM log GROUP BY to_date (time,'FMMonth FMDD, YYYY; 
 Create view 
 rate_val as SELECT r2.to_date, cast(a1.total*100 as float)/ cast(r2.total as float) as val FROM a1,r2 WHERE a1.to_date = r2.to_date; 
 Create view 
